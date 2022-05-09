@@ -1,6 +1,6 @@
 import React, {memo, Profiler, useState} from 'react';
 import styled from 'styled-components/native';
-import Cross from 'v1/assets/cross.svg';
+import Cross from 'v2/assets/cross.svg';
 
 //recoil
 import {useRecoilState} from 'recoil';
@@ -8,7 +8,7 @@ import {initialStateAtom} from 'v2/atom/initialAtomState';
 
 const Card: React.FC<CardPropTypes> = ({_id, title, color}) => {
   //initial Atom state
-  const [initialList, setInitiaList] = useRecoilState(initialStateAtom);
+  const [initialList, setInitialList] = useRecoilState(initialStateAtom);
   //react hook state
   const [selectedCompTitle, setSelectedCompTitle] = useState('');
   const [selectedCompNewTitle, setSelectedCompNewTitle] = useState('');
@@ -29,7 +29,7 @@ const Card: React.FC<CardPropTypes> = ({_id, title, color}) => {
             .toString(16)
             .padStart(6, '0'),
       };
-      setInitiaList({
+      setInitialList({
         ...initialList,
         list: updateList,
       });
@@ -41,7 +41,7 @@ const Card: React.FC<CardPropTypes> = ({_id, title, color}) => {
   const deleteHandler = () => {
     const updateList = [...initialList.list];
     const newList = updateList.filter(el => el._id !== _id);
-    setInitiaList({
+    setInitialList({
       ...initialList,
       list: newList,
     });
@@ -66,9 +66,9 @@ const Card: React.FC<CardPropTypes> = ({_id, title, color}) => {
             <Text>Change</Text>
           </StyledButton>
         </RowWrapper>
-        <DeletButton onPress={deleteHandler}>
+        <DeleteButton onPress={deleteHandler}>
           <Icon source={Cross} />
-        </DeletButton>
+        </DeleteButton>
       </Wrapper>
     </Profiler>
   );
@@ -104,7 +104,7 @@ const StyledInput = styled.TextInput`
 
 const StyledButton = styled.TouchableOpacity``;
 
-const DeletButton = styled.TouchableOpacity`
+const DeleteButton = styled.TouchableOpacity`
   position: absolute;
   top: 10px;
   right: 10px;

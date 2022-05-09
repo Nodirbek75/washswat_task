@@ -9,7 +9,8 @@ import {Card} from 'v2/components';
 
 const Home = () => {
   //initial Atom state
-  const [initialList, setInitiaList] = useRecoilState(initialStateAtom);
+  const [initialList, setInitialList] = useRecoilState(initialStateAtom);
+
   const renderItemHandler = useCallback(({item}) => <Card {...item} />, []);
 
   //add new card func
@@ -24,7 +25,7 @@ const Home = () => {
           .toString(16)
           .padStart(6, '0'),
     });
-    setInitiaList({
+    setInitialList({
       list: updatedList,
       count: initialList.count + 1,
     });
@@ -32,7 +33,7 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <StyledFlatlis data={initialList.list} renderItem={renderItemHandler} />
+      <StyledFlatList data={initialList.list} renderItem={renderItemHandler} />
       <AddButton onPress={addNewCardHandler}>
         <Text>Add Card</Text>
       </AddButton>
@@ -49,7 +50,7 @@ const Wrapper = styled.View`
   align-items: center;
 `;
 
-const StyledFlatlis = styled.FlatList`
+const StyledFlatList = styled.FlatList`
   width: 100%;
 `;
 
